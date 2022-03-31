@@ -33,9 +33,13 @@ form:after {
   background: linear-gradient(var(--primary), var(--secondary));
 }
 
-spam {
-  opacity: 70%;
+span {
+  opacity: 0%;
   color: red;
+}
+
+.span-error {
+  opacity: 1;
 }
 
 input {
