@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="styles/acesso.css">
 
   <!-- ---------------------- lógica aplicada no login ----------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/index.js"></script>
+  <script src="/scripts/main.js" defer></script>
 
 </head>
 
@@ -31,16 +30,15 @@
 
       <label>
         Email:
-        <input id="inputEmail" type="email" required>
-        <spam id="span">Digite seu email</spam>
+        <input id="inputEmail" type="email" placeholder="Digite seu e-mail" required>
+        <small id="small-email">Digite um e-mail válido</small>
       </label>
       <label>
         Senha:
-        <input id="inputPassword" type="password" required>
-        <spam id="span">Digite sua senha</spam>
+        <input id="inputPassword" type="password" placeholder="Digite sua senha" required>
       </label>
 
-      <button class="button" type="submit">Acessar</button>
+      <button type="submit">Acessar</button>
 
     </form>
     <div class="ingressar">
