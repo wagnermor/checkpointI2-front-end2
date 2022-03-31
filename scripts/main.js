@@ -1,0 +1,1 @@
+const getSmalEmail = document.querySelector('#small-email');

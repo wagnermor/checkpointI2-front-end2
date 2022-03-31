@@ -89,3 +89,12 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+small {
+  opacity: 0;
+}
+
+small.error {
+  opacity: 1;
+  color: red;
+}
