@@ -34,13 +34,11 @@ form:after {
 }
 
 span {
-  opacity: 0%;
-  color: red;
+  color: rgba(255, 255, 255, 0);
 }
 
 .span-error {
-  opacity: 1;
-  color: red;
+  color: rgba(255, 0, 0, 1);
 }
 
 input {

@@ -1,21 +1,28 @@
 let inputEmailReq = document.querySelector('#inputEmail')
 let inputPasswordReq = document.querySelector('#inputPassword')
 let botaoSubmitRef = document.querySelector('button')
-const teste  = document.querySelectorAll('[required]');
+const spams = document.querySelectorAll('[required] ~ span');
+const inputs  = document.querySelectorAll('[required]');
 
-console.log(teste);
+console.log(inputs);
+console.log(spams);
 
 
 botaoSubmitRef.addEventListener('click', event => {
 
     event.preventDefault()
 
-    for(let input of teste) {
+    for(let input of inputs) {
+        input.trim
         if(input.value === "") {
+            for(let spam of spams){
+                spam.classList.add("span-error")
+            }
             input.style.border = "1px solid red"
-            input.classList.toggle("span-error")
         }
+        console.log(input.value)
     }
-
+    // input.classList.remove("span-error")
+    console.log(botaoSubmitRef)
 
 })
