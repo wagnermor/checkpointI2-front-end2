@@ -7,6 +7,9 @@ const inputs  = document.querySelectorAll('[required]');
 console.log(inputs);
 console.log(spams);
 
+//fazer variavel de controle**
+//desabilitar o botao
+//disabled
 
 botaoSubmitRef.addEventListener('click', event => {
 
@@ -25,4 +28,45 @@ botaoSubmitRef.addEventListener('click', event => {
     // input.classList.remove("span-error")
     console.log(botaoSubmitRef)
 
+    //**************************************OUTRO ROLÊ*******************************************//
+    let credentials = {
+
+        email: 'string',
+        password: 'string'
+    }
+
+    let requestHeaders = {
+        'Content-Type': 'application/json'
+    }
+    
+    let requestConfiguration = {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+        headers: requestHeaders
+    }
+
+    fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', requestConfiguration).then(
+
+    response => {
+
+        response.json().then(
+
+            data => {
+
+                localStorage.setItem('token', data.jwt)
+
+            }
+
+        )
+
+    }
+
+)
+
 })
+
+
+
+
+
+
