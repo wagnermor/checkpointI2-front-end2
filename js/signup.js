@@ -1,9 +1,11 @@
 let inputNomeRef = document.querySelector('#inputNome')
 let inputApelidoRef = document.querySelector('#inputApelido')
 let inputEmailRef = document.querySelector('#inputEmail')
-let inputSenhaRef = document.querySelector('#inputSenha')
-let botaoCriarRef = document.querySelector('criar')
-
+let inputSenhaRef = document.querySelector('#inputPassword')
+let inputSenhaRef2 = document.querySelector('#inputPassword2')
+let botaoCriarRef = document.querySelector('button')
+const inputs  = document.querySelectorAll('[required]');
+const spans  = document.querySelectorAll('[required] ~ span');
 
 botaoCriarRef.addEventListener('click', event => {
 
@@ -12,21 +14,31 @@ botaoCriarRef.addEventListener('click', event => {
     for(let input of inputs) {
         input.trim
         if(input.value === "") {
-            for(let spam of spams){
-                spam.classList.add("span-error")
+            for(let span of spans){
+                span.classList.add("span-error")
             }
             input.style.border = "1px solid red"
+
+            console.log("deu erro")
         }
+        //else if (input.type='password'.value !== inputSenhaRef2.value){
+           // console.log('certo')
+        //}
         console.log(input.value)
     }
+    
+    //fazer um if para validar o botão de criar - senhas iguais
+    //botaoCriarRef.disabled = 'false'
     // input.classList.remove("span-error")
     console.log(botaoCriarRef)
 
     //**************************************OUTRO ROLÊ*******************************************//
-    let credentials = {
+    let users = {
 
-        email: 'string',
-        password: 'string'
+        firstName: `${inputNomeRef.value}`,
+        lastName: `${inputApelidoRef.value}`,
+        email: `${inputEmailRef.value}`,
+        password: `${inputSenhaRef.value}`
     }
 
     let requestHeaders = {
@@ -35,11 +47,11 @@ botaoCriarRef.addEventListener('click', event => {
     
     let requestConfiguration = {
         method: 'POST',
-        body: JSON.stringify(credentials),
+        body: JSON.stringify(users),
         headers: requestHeaders
     }
 
-    fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', requestConfiguration).then(
+    fetch('https://ctd-todo-api.herokuapp.com/v1/users', requestConfiguration).then(
 
     response => {
 
@@ -48,12 +60,13 @@ botaoCriarRef.addEventListener('click', event => {
             data => {
 
                 localStorage.setItem('token', data.jwt)
+                //window.location.href = './tarefas.html'
 
             }
 
         )
 
-    }
+    } 
 
 )
 

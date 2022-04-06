@@ -31,8 +31,8 @@ botaoSubmitRef.addEventListener('click', event => {
     //**************************************OUTRO ROLÊ*******************************************//
     let credentials = {
 
-        email: 'string',
-        password: 'string'
+        email: `${inputEmailReq.value}`,
+        password: `${inputPasswordReq.value}`
     }
 
     let requestHeaders = {
@@ -47,21 +47,26 @@ botaoSubmitRef.addEventListener('click', event => {
 
     fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', requestConfiguration).then(
 
-    response => {
+        response => {
+            if(response.ok){
+                response.json().then(
 
-        response.json().then(
-
-            data => {
-
-                localStorage.setItem('token', data.jwt)
-
+                    data => {
+    
+                        console.log(data)
+    
+                        localStorage.setItem('token', data.jwt)
+                        window.location.href = './tarefas.html'
+    
+                    }
+    
+                )
+            } else {
+                alert('Usuario ou senha inexistente')
             }
 
-        )
-
-    }
-
-)
+        }
+    )
 
 })
 
