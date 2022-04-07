@@ -1,3 +1,5 @@
+import activeButton from './activeButton.js';
+
 function comparePassword() {
   const s1 = document.getElementById('inputPassword').value;
   const s2 = document.getElementById('inputPassword2').value;
@@ -8,6 +10,7 @@ function comparePassword() {
     msg.className.add = "span-error";
     return false;
   }
+  activeButton();
   return true;
 }
 
