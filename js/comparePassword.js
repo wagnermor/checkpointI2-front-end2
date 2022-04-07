@@ -6,7 +6,9 @@ function comparePassword() {
     const msg = document.querySelector('#inputPassword ~ span');
     msg.innerText = 'Passwords do not match';
     msg.className.add = "span-error";
+    return false;
   }
+  return true;
 }
 
 export default comparePassword;
