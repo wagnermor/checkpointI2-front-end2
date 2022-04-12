@@ -1,16 +1,10 @@
-let botaocloseAppRef = document.querySelector('#closeApp')
+//Nome
+let userNameRef = document.querySelector('#userName')
+let userImageRef = document.querySelector('#userImage')
+let closeAppRef = document.querySelector('#closeApp')
+let novaTarefaRef = document.querySelector('#novaTarefa')
 let addTaskRef = document.querySelector('#addTask')
-let not-doneRef = document.querySelector('.not-done')
-let addTaskRef = document.querySelector('.descricao')
-let addTaskRef = document.querySelector('.nome')
-let addTaskRef = document.querySelector('.timestampk')
 
-
-<div class="not-done"></div>
-<div class="descricao">
-  <p class="nome">Nova tarefa</p>
-  <p class="timestamp">Criada em: 15/07/21</p>
-</div>
 
 let resquestConfigurationReq = {
 
@@ -28,7 +22,7 @@ addTaskRef.addEventListener('click',  event => {
     let users = {
 
             id: 1,
-            description: ,
+            description: false,
             completed: false,
             userId: 1,
             createdAt: "2021-06-30T22:53:09.549Z"

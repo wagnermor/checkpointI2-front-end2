@@ -51,23 +51,17 @@ botaoCriarRef.addEventListener('click', event => {
         headers: requestHeaders
     }
 
-    fetch('https://ctd-todo-api.herokuapp.com/v1/users', requestConfiguration).then(
-
-    response => {
-
-        response.json().then(
-
-            data => {
+    fetch('https://ctd-todo-api.herokuapp.com/v1/users', requestConfiguration)
+        .then(response => response.json()
+            .then(data => {
 
                 localStorage.setItem('token', data.jwt)
-                //window.location.href = './tarefas.html'
+                window.location.href = './tarefas.html'
 
             }
 
         )
 
-    } 
-
-)
+    )
 
 })
