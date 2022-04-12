@@ -4,18 +4,18 @@ let userImageRef = document.querySelector('#userImage')
 let closeAppRef = document.querySelector('#closeApp')
 let novaTarefaRef = document.querySelector('#novaTarefa')
 let addTaskRef = document.querySelector('#addTask')
-let req = {
-    "id": 0,
-  "firstName": "string",
-  "lastName": "string",
-  "email": "string"
+
+//Não volta o login e apaga os itens
+if(localStorage.getItem('token') === null){
+    window.location.href = './index.html'
 }
+console.log(localStorage.getItem('token'))
 
 let resquestConfigurationReq = {
 
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token',)
+        'Authorization': localStorage.getItem('token')
     }
 }
 
@@ -29,6 +29,12 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', resquestConfiguration
     )
 )
 
+closeAppRef.addEventListener('click',  event => {
+
+    localStorage.clear()
+    window.location.href = './index.html'
+})
+
 addTaskRef.addEventListener('click',  event => {
 
     event.preventDefault()
@@ -41,7 +47,7 @@ addTaskRef.addEventListener('click',  event => {
             userId: 1,
             createdAt: "2021-06-30T22:53:09.549Z"
         
-    }
+        }
 
 
 
