@@ -56,7 +56,7 @@ botaoCriarRef.addEventListener('click', event => {
             .then(data => {
 
                 localStorage.setItem('token', data.jwt)
-                window.location.href = './tarefas.html'
+                window.location.href = './index.html'
 
             }
 
