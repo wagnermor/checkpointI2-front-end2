@@ -4,16 +4,30 @@ let userImageRef = document.querySelector('#userImage')
 let closeAppRef = document.querySelector('#closeApp')
 let novaTarefaRef = document.querySelector('#novaTarefa')
 let addTaskRef = document.querySelector('#addTask')
-
+let req = {
+    "id": 0,
+  "firstName": "string",
+  "lastName": "string",
+  "email": "string"
+}
 
 let resquestConfigurationReq = {
 
     headers: {
-
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token',)
     }
 }
+
+fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', resquestConfigurationReq).then(
+    response => response.json().then(
+        data => {
+            nome = data.firstName
+            lastName = data.lastName
+            userNameRef.innerHTML = `${nome} ${lastName}`
+        }
+    )
+)
 
 addTaskRef.addEventListener('click',  event => {
 
@@ -29,10 +43,7 @@ addTaskRef.addEventListener('click',  event => {
         
     }
 
-    fetch('https://ctd-todo-api.herokuapp.com/v1/users/tasks', resquestConfigurationReq).then(
-    
-    response => {
-        console.log(response)
+
 
         if(response.ok) {
 
@@ -61,9 +72,6 @@ addTaskRef.addEventListener('click',  event => {
             }
         }
     })
-
-
-})
 
 
 
