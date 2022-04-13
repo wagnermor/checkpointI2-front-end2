@@ -21,6 +21,7 @@ botaoCriarRef.addEventListener('click', event => {
 
             console.log("deu erro")
         }
+        
         //else if (input.type='password'.value !== inputSenhaRef2.value){
            // console.log('certo')
         //}
