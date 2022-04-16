@@ -55,6 +55,7 @@ function creatTask(){
         description: novaTarefaRef.value,
         completed: false
     }
+
     let requestConfigurationPost = {
         method: "POST",
         body: JSON.stringify(newTask),
@@ -66,16 +67,62 @@ function creatTask(){
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", requestConfigurationPost).then(response => {
         if(response.ok){
             response.json().then(
-                response => {
+                // response => {
 
-                    console.log(response)
+                //     console.log(response)
+                // }
+                newTask => {
+                    listUnfinishedTasksRef.innerHTML += `
+                        <li class="tarefa">
+                            <div class="not-done" onclick="mudarParaTarefaFeita(${newTask.id})"></div>
+                            <div class="descricao">
+                                <p class="nome">${newTask.description}</p>
+                                <p class="timestamp">Criada em: ${newTask.createdAt}</p>
+                            </div>
+                        </li>`                      
                 }
             )
         }
 
     })
 
+
 }
+
+// function teste(){
+//     let requestHeaders = {
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': localStorage.getItem('token')
+//         }
+//     }
+//     let task = {
+//         id: 1,
+//         description: novaTarefaRef.value,
+//         completed: false,
+//         userId: 1,
+//         createdAt: new Date()
+//     }
+//     fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', requestHeaders).then(
+//         response => {
+//             if(response.ok) {
+
+//                 response.json().then(
+
+//                     tasks => {
+//                         console.log(tasks)
+                        
+//                     }
+
+//                 )
+
+//             }
+//         }
+
+
+//     )
+
+// }
 
 
 //Lista de tarefas
@@ -138,6 +185,7 @@ function getTasks() {
                                     </li>`
                             }
                         }
+                        
                     }
 
                 )
@@ -156,6 +204,7 @@ addTaskRef.addEventListener('click',  event => {
     event.preventDefault()
 
     creatTask();
+    // teste();
     
     console.log("Botao Funcionando!")
 
@@ -165,7 +214,7 @@ addTaskRef.addEventListener('click',  event => {
 window.addEventListener('load', () =>{
 
     getTasks()
-    
+    // teste();
 })
 
 
