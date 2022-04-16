@@ -55,38 +55,32 @@ function creatTask(){
         description: novaTarefaRef.value,
         completed: false
     }
-    let requestHeaders = {
+    let requestConfigurationPost = {
+        method: "POST",
+        body: JSON.stringify(newTask),
         headers: {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('token')
         }
     }
-    let requestConfigurationPost = {
-        method: "POST",
-        body: JSON.stringify(newTask),
-        headers: requestHeaders
-    }
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", requestConfigurationPost).then(response => {
-        response.json()
+        if(response.ok){
+            response.json().then(
+                response => {
+
+                    console.log(response)
+                }
+            )
+        }
+
     })
 
-
-
 }
-
-//Botao adicionar tarefas
-addTaskRef.addEventListener('click',  event => {
-
-    event.preventDefault()
-
-    creatTask();
-
-
-})
 
 
 //Lista de tarefas
 function getTasks() {
+
     let requestHeaders = {
         headers: {
             'Content-Type': 'application/json',
@@ -95,10 +89,10 @@ function getTasks() {
     }
     let task = {
         id: 1,
-        description: novaTarefaRef,
+        description: novaTarefaRef.value,
         completed: false,
         userId: 1,
-        createdAt: "2021-06-30T22:53:09.549Z"
+        createdAt: new Date()
     }
     fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', requestHeaders).then(
         response => {
@@ -109,17 +103,12 @@ function getTasks() {
                     tasks => {
                         console.log(tasks.length)
                         if(tasks.length >= 1){
-                            //removeSkeletonRef.remove('skeleton');
                             listFinishedTasksRef.innerHTML = ''
                             listUnfinishedTasksRef.innerHTML = ''
                         } 
-
-
-
-
                         for(let currentTask of tasks) {
 
-                            const dataFormatada = new Date(task.createdAt).toLocaleDateString(
+                            const dataAtualizada = new Date(task.createdAt).toLocaleDateString(
                                 'pt-BR',
                                 {
                                     day: '2-digit',
@@ -134,7 +123,7 @@ function getTasks() {
                                         <div class="not-done" onclick="updateTask(${currentTask.id})"></div>
                                         <div class="descricao">
                                             <p class="nome">${currentTask.description}</p>
-                                            <p class="timestamp">Criada em:${dataFormatada}</p>
+                                            <p class="timestamp">Criada em:${dataAtualizada}</p>
                                         </div>
                                     </li>`
 
@@ -144,7 +133,7 @@ function getTasks() {
                                         <div class="not-done" onclick="updateTask(${currentTask.id})"></div>
                                         <div class="descricao">
                                             <p class="nome">${currentTask.description}</p>
-                                            <p class="timestamp">Criada em:${dataFormatada}</p>
+                                            <p class="timestamp">Criada em:${dataAtualizada}</p>
                                         </div>
                                     </li>`
                             }
@@ -158,9 +147,19 @@ function getTasks() {
 
 
     )
+
 }
 
-// function concluirTarefas(){}
+//Botao adicionar tarefas
+addTaskRef.addEventListener('click',  event => {
+
+    event.preventDefault()
+
+    creatTask();
+    
+    console.log("Botao Funcionando!")
+
+})
 
 //Carregar "pagina"
 window.addEventListener('load', () =>{
