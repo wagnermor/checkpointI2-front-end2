@@ -137,6 +137,7 @@ a {
   transition: background-color 200ms linear;
 }
 
+
 .tarefa .not-done:hover {
   background-color: var(--secondary);
 }
