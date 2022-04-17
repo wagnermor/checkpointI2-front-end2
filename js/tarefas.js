@@ -123,42 +123,39 @@ function updateTaskToFalse(id) {
     )
 }
 
-//Requisição p/ atualizar tarefas para terminadas
-function updateTask(id) {
-    const requestPutAuthorizateConfiguration = {
-        method: 'PUT',
-        headers:{
-            'Content-Type':'application/json',
-            'Authorization': localStorage.getItem('token')},
+function deleteTask(id) {
+
+    const taskStatedeleted = {
+        method: 'DELETE',
+        headers:login.headers,
         body: JSON.stringify({completed:true})
         }
-    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestPutAuthorizateConfiguration).then(
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, taskStatedeleted).then(
         response => {
             if(response.ok){
-                getTasks()
+                printTasks()
             }
         }
     )
 }
+// //Requisição p/ deletar tarefas
+// const requestDeleteAuthorizateConfiguration = {
+//     method: 'DELETE',
+//     headers:{
+//         'Content-Type':'application/json',
+//         'Authorization': localStorage.getItem('token')
+//     }
+// }
 
-//Requisição p/ deletar tarefas
-const requestDeleteAuthorizateConfiguration = {
-    method: 'DELETE',
-    headers:{
-        'Content-Type':'application/json',
-        'Authorization': localStorage.getItem('token')
-    }
-}
-
-function deleteTask(id) {
-    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestDeleteAuthorizateConfiguration).then(
-        response => {
-            if(response.ok){
-                getTasks()
-            }
-        }
-    )
-}
+// function deleteTask(id) {
+//     fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestDeleteAuthorizateConfiguration).then(
+//         response => {
+//             if(response.ok){
+//                 getTasks()
+//             }
+//         }
+//     )
+// }
 
 //Botao adicionar tarefas
 addTaskRef.addEventListener('click',  (event) => {
