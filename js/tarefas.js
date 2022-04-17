@@ -58,7 +58,7 @@ function creatTask(){
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", requestConfigurationPost).then(response => {
         if(response.ok){
             response.json().then(
-                
+
                 newTask => {
                     listUnfinishedTasksRef.innerHTML += `
                         <li class="tarefa">
@@ -151,7 +151,7 @@ function getTasks() {
 
 }
 
-//Requisição p/ atualizar tarefas para completadas
+//Requisição p/ atualizar tarefas para terminadas
 function updateTask(id) {
 
     const requestPutAuthorizateConfiguration = {
