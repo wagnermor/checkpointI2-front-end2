@@ -41,8 +41,8 @@ botaoSubmitRef.addEventListener('click', event => {
     
     let requestConfiguration = {
         method: 'POST',
-        body: JSON.stringify(credentials),
-        headers: requestHeaders
+        headers: requestHeaders,
+        body: JSON.stringify(credentials)
     }
 
     fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', requestConfiguration).then(
@@ -69,9 +69,3 @@ botaoSubmitRef.addEventListener('click', event => {
     )
 
 })
-
-
-
-
-
-
