@@ -37,8 +37,18 @@ span {
   color: rgba(255, 255, 255, 0);
 }
 
-span {
-  color: rgba(255, 0, 0, 1);
+.error {
+  background-color: var(--input-not-ok);
+}
+.not-error {
+  background-color: var(--input-ok);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 30px var(--app-grey) inset !important;
 }
 
 input {
@@ -47,8 +57,12 @@ input {
   background-color: var(--app-grey);
   border: 1px solid var(--app-grey);
   border-radius: .2em;
+  color: #808080;
 }
+input:active {
+  background-color: var(--app-grey);
 
+}
 input:focus {
   outline: none;
   border: 1px solid lightgrey;
@@ -69,6 +83,14 @@ button {
   margin-top: 2em;
   font-weight: 400;
   font-size: 1em;
+}
+
+button:disabled {
+  background-color: var(--primary-disabled);
+}
+
+button:disabled:hover {
+  cursor: default;
 }
 
 .form-header {
