@@ -1,67 +1,55 @@
-let inputNomeRef = document.querySelector('#inputNome')
-let inputApelidoRef = document.querySelector('#inputApelido')
-let inputEmailRef = document.querySelector('#inputEmail')
-let inputSenhaRef = document.querySelector('#inputPassword')
-let inputSenhaRef2 = document.querySelector('#inputPassword2')
-let botaoCriarRef = document.querySelector('button')
+const inputNomeRef = document.querySelector('#inputNome')
+const inputApelidoRef = document.querySelector('#inputApelido')
+const inputEmailRef = document.querySelector('#inputEmail')
+const inputSenhaRef = document.querySelector('#inputPassword')
+const inputSenhaRef2 = document.querySelector('#inputPassword2')
+const btnCriarRef = document.querySelector('button')
 const inputs  = document.querySelectorAll('[required]');
-const spans  = document.querySelectorAll('[required] ~ span');
+// const spans  = document.querySelectorAll('[required] ~ span');
 
-
-function validar(){
-    // for(let input of inputs) {
-    //     input.trim
-    //     if(input.value === "") {
-    //         for(let span of spans){
-    //             span.classList.add("span-error")
-    //         }
-    //         input.style.border = "1px solid red"
-    //         console.log("deu erro")
-    //     }
-    // }
-    if(inputNomeRef.value == ""){
-        alert( "Por favor, informe um nome!" );
-        window.StopWhateverBelow()   
+const validate = () => {
+    for(let input of inputs) {
+        input.addEventListener('keyup', () => {// Evento de keyup para cada elemento input
+            input.value.trim()
+            console.log(input.checkValidity())
+            if(input.checkValidity()) {
+                btnCriarRef.disabled = false
+                input.classList.remove('error')
+                input.classList.add('not-error')
+                input.style.backgroundColor = "var(--input-ok)"
+            } else {
+                btnCriarRef.disabled = true
+                input.classList.add('error')
+                input.style.backgroundColor = "var(--input-not-ok)"
+            }
+            if(inputs[inputs.length - 1].value === inputs[inputs.length - 2].value) {
+                btnCriarRef.disabled = false
+                inputs[inputs.length - 1].classList.remove('error')
+                inputs[inputs.length - 1].classList.add('not-error')
+                inputs[inputs.length - 1].style.backgroundColor = "var(--input-ok)"
+            } else {
+                btnCriarRef.disabled = true
+                inputs[inputs.length - 1].classList.add('error')
+                inputs[inputs.length - 1].style.backgroundColor = "var(--input-not-ok)"
+            }
+        })
     }
-    if(inputApelidoRef.value == ""){
-        alert( "Por favor, informe um Apelido!" );
-        window.StopWhateverBelow()   
-    }
-    //Validação Email
-    if(inputEmailRef.value.indexOf('@') == -1 || inputEmailRef.value.indexOf('.') == -1 ){
-            alert( "Por favor, informe um email válido!" );
-            window.StopWhateverBelow()            
-    }
-    if(inputSenhaRef.value == "" ){
-        alert( "Por favor, informe uma senha válida!" );
-        window.StopWhateverBelow()   
-    }
-    if(inputSenhaRef2.value == "" ){
-        alert( "Por favor, confirme a senha digitada!" );
-        window.StopWhateverBelow()   
-    }
-    //Validação Senhas
-    if (inputSenhaRef.value != inputSenhaRef2.value) {
-        alert("Senhas diferentes!\nPor favor, informe as senhas iguais!"); 
-        window.StopWhateverBelow()  
-    }   
 }
 
-botaoCriarRef.addEventListener('click', event => {
-    event.preventDefault()
-    validar()
+validate()
 
-    //**************************************OUTRO ROLÊ*******************************************//
-    let users = {
+btnCriarRef.addEventListener('click', event => {
+    event.preventDefault()
+// OUTRO ROLÊ
+    const users = {
         firstName: `${inputNomeRef.value}`,
         lastName: `${inputApelidoRef.value}`,
         email: `${inputEmailRef.value}`,
         password: `${inputSenhaRef.value}`
     }
 
-    let requestHeaders = {'Content-Type': 'application/json' }
-    
-    let requestConfiguration = {
+    const requestHeaders = {'Content-Type': 'application/json' }
+    const requestConfiguration = {
         method: 'POST',
         body: JSON.stringify(users),
         headers: requestHeaders
