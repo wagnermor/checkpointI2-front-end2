@@ -28,16 +28,16 @@
 
       <label>
         Email:
-        <input id="inputEmail" type="email" required>
+        <input id="inputEmail" type="email" pattern="(\w\.?)+@[\w\.-]+\.\w{2,4}" placeholder="Ex: seu_email@mail.com" required>
         <span>Digite seu email</span>
       </label>
       <label>
         Senha:
-        <input id="inputPassword" type="password" required>
+        <input id="inputPassword" type="password" pattern="(?=.*\d)(?=.*[a-z]).{4,}" placeholder="Ex: ab12" required>
         <span>Digite sua senha</span>
       </label>
       <!-- disabled="false" Habilitar o disabled -->
-      <button class="button" type="submit" >Acessar</button>
+      <button class="button" type="submit" disabled>Acessar</button>
 
     </form>
     <div class="ingressar">
