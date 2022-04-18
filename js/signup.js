@@ -7,44 +7,59 @@ let botaoCriarRef = document.querySelector('button')
 const inputs  = document.querySelectorAll('[required]');
 const spans  = document.querySelectorAll('[required] ~ span');
 
-botaoCriarRef.addEventListener('click', event => {
 
-    event.preventDefault()
-
-    for(let input of inputs) {
-        input.trim
-        if(input.value === "") {
-            for(let span of spans){
-                span.classList.add("span-error")
-            }
-            input.style.border = "1px solid red"
-
-            console.log("deu erro")
-        }
-        
-        //else if (input.type='password'.value !== inputSenhaRef2.value){
-           // console.log('certo')
-        //}
-        console.log(input.value)
+function validar(){
+    // for(let input of inputs) {
+    //     input.trim
+    //     if(input.value === "") {
+    //         for(let span of spans){
+    //             span.classList.add("span-error")
+    //         }
+    //         input.style.border = "1px solid red"
+    //         console.log("deu erro")
+    //     }
+    // }
+    if(inputNomeRef.value == ""){
+        alert( "Por favor, informe um nome!" );
+        window.StopWhateverBelow()   
     }
-    
-    //fazer um if para validar o botão de criar - senhas iguais
-    //botaoCriarRef.disabled = 'false'
-    // input.classList.remove("span-error")
-    console.log(botaoCriarRef)
+    if(inputApelidoRef.value == ""){
+        alert( "Por favor, informe um Apelido!" );
+        window.StopWhateverBelow()   
+    }
+    //Validação Email
+    if(inputEmailRef.value.indexOf('@') == -1 || inputEmailRef.value.indexOf('.') == -1 ){
+            alert( "Por favor, informe um email válido!" );
+            window.StopWhateverBelow()            
+    }
+    if(inputSenhaRef.value == "" ){
+        alert( "Por favor, informe uma senha válida!" );
+        window.StopWhateverBelow()   
+    }
+    if(inputSenhaRef2.value == "" ){
+        alert( "Por favor, confirme a senha digitada!" );
+        window.StopWhateverBelow()   
+    }
+    //Validação Senhas
+    if (inputSenhaRef.value != inputSenhaRef2.value) {
+        alert("Senhas diferentes!\nPor favor, informe as senhas iguais!"); 
+        window.StopWhateverBelow()  
+    }   
+}
+
+botaoCriarRef.addEventListener('click', event => {
+    event.preventDefault()
+    validar()
 
     //**************************************OUTRO ROLÊ*******************************************//
     let users = {
-
         firstName: `${inputNomeRef.value}`,
         lastName: `${inputApelidoRef.value}`,
         email: `${inputEmailRef.value}`,
         password: `${inputSenhaRef.value}`
     }
 
-    let requestHeaders = {
-        'Content-Type': 'application/json'
-    }
+    let requestHeaders = {'Content-Type': 'application/json' }
     
     let requestConfiguration = {
         method: 'POST',
@@ -55,14 +70,9 @@ botaoCriarRef.addEventListener('click', event => {
     fetch('https://ctd-todo-api.herokuapp.com/v1/users', requestConfiguration)
         .then(response => response.json()
             .then(data => {
-
                 localStorage.setItem('token', data.jwt)
                 window.location.href = './index.html'
-
             }
-
         )
-
     )
-
 })

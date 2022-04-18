@@ -117,6 +117,7 @@ function creatTask(){
             if(response.ok) response.json()
             
         })
+    novaTarefaRef.value = ''
 }
 
 //Requisição p/ atualizar tarefas para completadas
@@ -138,7 +139,7 @@ function updateTask(id) {
 function updateTaskToFalse(id) {
     const taskStateTrue = {
         method: 'PUT',
-        headers:login.headers,
+        headers:login["headers"],
         body: JSON.stringify({completed: false})
     }
     fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, taskStateTrue)
