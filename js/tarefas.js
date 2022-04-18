@@ -5,7 +5,6 @@ let novaTarefaRef = document.querySelector('#novaTarefa')
 let addTaskRef = document.querySelector('#addTask')
 let listUnfinishedTasksRef = document.querySelector('.tarefas-pendentes')
 let listFinishedTasksRef = document.querySelector('.tarefas-terminadas')
-// let removeSkeletonRef = document.querySelector('#skeleton')
 
 const login = {
     headers: {
@@ -55,6 +54,7 @@ const printTasks = () => {
                             <div class="descricao">
                                 <p class="nome">${task.description}</p>
                                 <p class="timestamp">Criada em: ${task.createdAt}</p>
+                                <button id="btn-delete" onclick="deleteTask(${task.id})"><div></div></button>
                             </div>
                         </li>`
                 }else{
@@ -64,6 +64,7 @@ const printTasks = () => {
                             <div class="descricao">
                                 <p class="nome">${task.description}</p>
                                 <p class="timestamp">Criada em:${task.createdAt}</p>
+                                <button id="btn-delete" onclick="deleteTask(${task.id})"><div></div></button>
                             </div>
                         </li>`
                 }
@@ -73,6 +74,31 @@ const printTasks = () => {
 }
 
 //Função de cricação de Tarefas
+
+const skeletonStructure = `<div id="skeleton">
+<li class="tarefa">
+    <div class="not-done"></div>
+    <div class="descricao">
+        <p class="nome">Nova tarefa</p>
+        <p class="timestamp">Criada em: 15/07/21</p>
+    </div>
+</li>
+<li class="tarefa">
+    <div class="not-done"></div>
+    <div class="descricao">
+        <p class="nome">Nova tarefa</p>
+        <p class="timestamp">Criada em: 15/07/21</p>
+    </div>
+</li>
+<li class="tarefa">
+    <div class="not-done"></div>
+    <div class="descricao">
+        <p class="nome">Nova tarefa</p>
+        <p class="timestamp">Criada em: 15/07/21</p>
+    </div>
+</li>
+</div>`
+
 function creatTask(){   
     let newTask = {
         description: novaTarefaRef.value,
@@ -87,12 +113,12 @@ function creatTask(){
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", requestConfigurationPost)
         .then(response => {
             if(response.ok) response.json()
+            
         })
 }
 
 //Requisição p/ atualizar tarefas para completadas
 function updateTask(id) {
-
     const taskStateTrue = {
         method: 'PUT',
         headers:login.headers,
@@ -108,62 +134,47 @@ function updateTask(id) {
 }
 //Atualiza tarefas para nao concluidas
 function updateTaskToFalse(id) {
-
     const taskStateTrue = {
         method: 'PUT',
         headers:login.headers,
         body: JSON.stringify({completed: false})
-        }
-    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, taskStateTrue).then(
-        response => {
+    }
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, taskStateTrue)
+        .then(response => {
             if(response.ok){
                 printTasks()
             }
-        }
-    )
+        })
 }
+const time = () => setTimeout(printTasks, 1000);
 
 function deleteTask(id) {
-
     const taskStatedeleted = {
         method: 'DELETE',
-        headers:login.headers,
-        body: JSON.stringify({completed:true})
+        headers:login.headers
         }
     fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, taskStatedeleted).then(
         response => {
             if(response.ok){
                 printTasks()
+            } else{
+                listUnfinishedTasksRef.innerHTML = ""
+                listFinishedTasksRef.innerHTML = ""
+                listUnfinishedTasksRef.innerHTML += skeletonStructure
+                listFinishedTasksRef.innerHTML += skeletonStructure
             }
         }
     )
 }
-// //Requisição p/ deletar tarefas
-// const requestDeleteAuthorizateConfiguration = {
-//     method: 'DELETE',
-//     headers:{
-//         'Content-Type':'application/json',
-//         'Authorization': localStorage.getItem('token')
-//     }
-// }
-
-// function deleteTask(id) {
-//     fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestDeleteAuthorizateConfiguration).then(
-//         response => {
-//             if(response.ok){
-//                 getTasks()
-//             }
-//         }
-//     )
-// }
 
 //Botao adicionar tarefas
 addTaskRef.addEventListener('click',  (event) => {
     event.preventDefault()
     creatTask();
     console.log("Botao Funcionando!")
-    const printTasksTimeout = setTimeout(printTasks, 3000);
+    const printTasksTimeout = setTimeout(printTasks, 1000);
 })
+
 
 //Carregar "pagina"
 window.addEventListener('load', () =>{

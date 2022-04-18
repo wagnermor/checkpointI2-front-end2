@@ -239,6 +239,17 @@ a {
 #skeleton{
   animation: trasparencia 1s infinite;
 }
+
+#btn-delete div{
+  background-image: url(../assets/icons/trash-orange.svg);
+  height: 30px;
+  width: 27px;
+  background-repeat: no-repeat;
+}
+#btn-delete:hover div{
+  background-image: url(../assets/icons/trash-red.svg);
+}
+
 @keyframes trasparencia {
   0%{ opacity: 0.5;}
   100%{ opacity: 0.8;}
