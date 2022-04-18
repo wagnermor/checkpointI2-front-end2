@@ -1,10 +1,12 @@
-let userNameRef = document.querySelector('#userName')
-let userImageRef = document.querySelector('#userImage')
-let closeAppRef = document.querySelector('#closeApp')
-let novaTarefaRef = document.querySelector('#novaTarefa')
-let addTaskRef = document.querySelector('#addTask')
-let listUnfinishedTasksRef = document.querySelector('.tarefas-pendentes')
-let listFinishedTasksRef = document.querySelector('.tarefas-terminadas')
+const selectElement = (selector) => document.querySelector(selector)
+
+const userNameRef = selectElement('#userName')
+const userImageRef = selectElement('#userImage')
+const closeAppRef = selectElement('#closeApp')
+const novaTarefaRef = selectElement('#novaTarefa')
+const addTaskRef = selectElement('#addTask')
+const listUnfinishedTasksRef = selectElement('.tarefas-pendentes')
+const listFinishedTasksRef = selectElement('.tarefas-terminadas')
 
 const login = {
     headers: {
