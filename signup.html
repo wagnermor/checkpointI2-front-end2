@@ -39,22 +39,22 @@
       </label> 
       <label>
         Email:
-        <input type="email" placeholder="Digite o seu Email" id="inputEmail" required>
+        <input type="email" pattern="(\w\.?)+@[\w\.-]+\.\w{2,4}" placeholder="Ex: seu_email@mail.com" id="inputEmail" required>
         <!-- <span>Por favor, informe um e-mail válido</span> -->
       </label>
       <label>
         Senha:
-        <input type="password" placeholder="Digite o sua senha" id="inputPassword" required>
+        <input type="password" pattern="(?=.*\d)(?=.*[a-z]).{4,}" placeholder="Ex: ab12" id="inputPassword" required>
         <!-- <span>Por favor, informe uma senha válida</span> -->
       </label>
       <label>
         Repetir senha:
-        <input type="password" placeholder="Digite o sua senha" id="inputPassword2" required>
+        <input type="password" placeholder="Ex: ab12" id="inputPassword2" required>
         <!-- <span>Por favor, informe uma senha válida</span> -->
       </label>
 
       <!-- disabled="false" Ativar botão disabled-->
-      <button class="criar" >Criar conta</button>
+      <button class="criar" disabled>Criar conta</button>
 
     </form>
     <div class="ingressar">
