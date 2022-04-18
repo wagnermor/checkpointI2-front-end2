@@ -245,6 +245,7 @@ a {
   height: 30px;
   width: 27px;
   background-repeat: no-repeat;
+  transition: background .5s;
 }
 #btn-delete:hover div{
   background-image: url(../assets/icons/trash-red.svg);
