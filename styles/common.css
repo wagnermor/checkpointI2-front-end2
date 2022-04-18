@@ -2,8 +2,11 @@
 
 :root {
   --primary: #7898FF;
+  --primary-disabled: rgba(120, 152, 255, 0.616);
   --secondary: #8E64C5;
   --app-grey: #F2F2F2;
+  --input-ok: rgba(172, 255, 47, .3); 
+  --input-not-ok: rgba(255, 0, 0, .3); 
 }
 
 * {
