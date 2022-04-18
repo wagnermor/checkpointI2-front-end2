@@ -30,7 +30,7 @@ form:after {
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(var(--primary), var(--secondary));
+  background: linear-gradient(to top, rgb(255, 179, 0), rgb(7, 235, 193));
 }
 
 span {
@@ -78,7 +78,7 @@ label {
 
 button {
   padding: .5em 3em;
-  background-color: var(--primary);
+  background-color: (to top, rgb(255, 179, 0), rgb(7, 235, 193));
   color: white;
   margin-top: 2em;
   font-weight: 400;
@@ -86,7 +86,7 @@ button {
 }
 
 button:disabled {
-  background-color: var(--primary-disabled);
+  background-color: rgb(255, 179, 0);
 }
 
 button:disabled:hover {
@@ -109,7 +109,7 @@ button:disabled:hover {
   justify-content: center;
 }
 .left img{
-  width:60%;
+  width:110%;
 }
 .right{
   width: 50%;
