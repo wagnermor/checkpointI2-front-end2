@@ -22,16 +22,16 @@ const validate = () => {
                 input.classList.add('error')
                 input.style.backgroundColor = "var(--input-not-ok)"
             }
-            if(inputs[inputs.length - 1].value === inputs[inputs.length - 2].value) {
-                btnCriarRef.disabled = false
-                inputs[inputs.length - 1].classList.remove('error')
-                inputs[inputs.length - 1].classList.add('not-error')
-                inputs[inputs.length - 1].style.backgroundColor = "var(--input-ok)"
-            } else {
-                btnCriarRef.disabled = true
-                inputs[inputs.length - 1].classList.add('error')
-                inputs[inputs.length - 1].style.backgroundColor = "var(--input-not-ok)"
-            }
+            // if(inputs[inputs.length - 1].value === inputs[inputs.length - 2].value) {
+            //     btnCriarRef.disabled = false
+            //     // inputs[inputs.length - 1].classList.remove('error')
+            //     // inputs[inputs.length - 1].classList.add('not-error')
+            //     // inputs[inputs.length - 1].style.backgroundColor = "var(--input-ok)"
+            // } else {
+            //     btnCriarRef.disabled = true
+            //     // inputs[inputs.length - 1].classList.add('error')
+            //     // inputs[inputs.length - 1].style.backgroundColor = "var(--input-not-ok)"
+            // }
         })
     }
 }
