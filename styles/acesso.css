@@ -78,18 +78,29 @@ label {
 
 button {
   padding: .5em 3em;
-  background-color: (to top, rgb(255, 179, 0), rgb(7, 235, 193));
+  background: rgb(7, 235, 193);
   color: white;
   margin-top: 2em;
   font-weight: 400;
   font-size: 1em;
+  transform: scale(1);
+  opacity: 1;
+  transition: transform .5s;
+}
+
+button:hover {
+  transform: scale(1.2);
 }
 
 button:disabled {
-  background-color: rgb(255, 179, 0);
+  background: rgba(255, 179, 0, .6);
+  transform: scale(.5);
+  opacity: .0;
 }
 
 button:disabled:hover {
+  /* background-color: linear-gradient(rgb(255, 179, 0), rgb(7, 235, 193)); */
+  transform: none;
   cursor: default;
 }
 
