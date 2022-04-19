@@ -17,7 +17,6 @@ const validate = () => {
     for(let input of inputs) {
         input.addEventListener('keyup', () => {// Evento de keyup para cada elemento input
             input.value.trim()
-            console.log(input.id)
             formValidity[input.id] = input.checkValidity()
             if(input.checkValidity()) {
                 // btnCriarRef.disabled = false

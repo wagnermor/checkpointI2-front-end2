@@ -3,11 +3,15 @@ let inputPasswordReq = document.querySelector('#inputPassword')
 let btnSubmitRef = document.querySelector('button')
 const inputs  = document.querySelectorAll('[required]')
 // const spans = document.querySelectorAll('[required] ~ span')
-
+let formValidity = {
+    inputEmail: false,
+    inputPassword: false
+}
 const validate = () => {
     for(let input of inputs) {
         input.addEventListener('keyup', () => {// Evento de keyup para cada elemento input
             input.value.trim()
+            formValidity[input.id] = input.checkValidity()
             console.log(input.checkValidity())
             if(input.checkValidity()) {
                 btnSubmitRef.disabled = false
@@ -18,6 +22,13 @@ const validate = () => {
                 btnSubmitRef.disabled = true
                 input.classList.add('error')
                 input.style.backgroundColor = "var(--input-not-ok)"
+            }
+
+            if(formValidity.inputEmail && formValidity.inputPassword) {
+                btnCriarRef.disabled = false
+            } else {
+                btnCriarRef.disabled = true
+
             }
         })
     }
