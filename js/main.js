@@ -14,7 +14,6 @@ const validate = () => {
             formValidity[input.id] = input.checkValidity()
             console.log(input.checkValidity())
             if(input.checkValidity()) {
-                btnSubmitRef.disabled = false
                 input.classList.remove('error')
                 input.classList.add('not-error')
                 input.style.backgroundColor = "var(--input-ok)"
