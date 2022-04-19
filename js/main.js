@@ -24,9 +24,9 @@ const validate = () => {
             }
 
             if(formValidity.inputEmail && formValidity.inputPassword) {
-                btnCriarRef.disabled = false
+                btnSubmitRef.disabled = false
             } else {
-                btnCriarRef.disabled = true
+                btnSubmitRef.disabled = true
 
             }
         })
