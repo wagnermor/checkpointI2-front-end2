@@ -6,14 +6,21 @@ const inputSenhaRef2 = document.querySelector('#inputPassword2')
 const btnCriarRef = document.querySelector('button')
 const inputs  = document.querySelectorAll('[required]');
 // const spans  = document.querySelectorAll('[required] ~ span');
-
+let formValidity = {
+    inputNome: false,
+    inputApelido: false,
+    inputEmail: false,
+    inputPassword: false,
+    inputPassword2: false
+}
 const validate = () => {
     for(let input of inputs) {
         input.addEventListener('keyup', () => {// Evento de keyup para cada elemento input
             input.value.trim()
-            console.log(input.checkValidity())
+            console.log(input.id)
+            formValidity[input.id] = input.checkValidity()
             if(input.checkValidity()) {
-                btnCriarRef.disabled = false
+                // btnCriarRef.disabled = false
                 input.classList.remove('error')
                 input.classList.add('not-error')
                 input.style.backgroundColor = "var(--input-ok)"
@@ -22,6 +29,7 @@ const validate = () => {
                 input.classList.add('error')
                 input.style.backgroundColor = "var(--input-not-ok)"
             }
+            //************* */
             if(inputs[inputs.length - 1].value === inputs[inputs.length - 2].value) {
                 btnCriarRef.disabled = false
                 inputs[inputs.length - 1].classList.remove('error')
@@ -31,6 +39,13 @@ const validate = () => {
                 btnCriarRef.disabled = true
                 inputs[inputs.length - 1].classList.add('error')
                 inputs[inputs.length - 1].style.backgroundColor = "var(--input-not-ok)"
+            }
+            
+            if(formValidity.inputNome && formValidity.inputApelido && formValidity.inputEmail && formValidity.inputPassword && formValidity.inputPassword2) {
+                btnCriarRef.disabled = false
+            } else {
+                btnCriarRef.disabled = true
+
             }
         })
     }
