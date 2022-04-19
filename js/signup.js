@@ -73,7 +73,7 @@ btnCriarRef.addEventListener('click', event => {
         .then(response => response.json()
             .then(data => {
                 localStorage.setItem('token', data.jwt)
-                // window.location.href = './index.html'
+                window.location.href = './index.html'
             }
         )
     )

@@ -1,5 +1,5 @@
-const selectElement = (selector) => document.querySelector(selector)
-
+const selectElement = selector => document.querySelector(selector)
+const userImage = document.querySelector('#userImage')
 const userNameRef = selectElement('#userName')
 const userImageRef = selectElement('#userImage')
 const closeAppRef = selectElement('#closeApp')
@@ -7,6 +7,8 @@ const novaTarefaRef = selectElement('#novaTarefa')
 const addTaskRef = selectElement('#addTask')
 const listUnfinishedTasksRef = selectElement('.tarefas-pendentes')
 const listFinishedTasksRef = selectElement('.tarefas-terminadas')
+// const githubAvatar = 'https://avatars.githubusercontent.com/'
+
 
 const login = {
     headers: {
@@ -20,13 +22,24 @@ if(localStorage.getItem('token') === null){
     window.location.href = './index.html'
 }
 
+userImage.classList.add('user-image')
+
 //Mostrar nome do Usuario
 fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', login).then(
     response => response.json().then(
         data => {
             nome = data.firstName
             lastName = data.lastName
-            userNameRef.innerHTML = `${nome} ${lastName}`
+            userNameRef.innerHTML = `${nome}`
+            
+            const githubAvatar = `${lastName})`
+            
+            userImageRef.innerHTML = `<p>${nome[0]}</p>`
+            if(githubAvatar) {
+                userImageRef.innerHTML = ''
+                userImageRef.style.backgroundImage = `url(https://avatars.githubusercontent.com/${githubAvatar}`
+                userImageRef.style.opacity = 1
+            }
         }
     )
 )
