@@ -38,9 +38,9 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', login).then(
                 userImageRef.innerHTML = ''
                 userImageRef.style.opacity = 1
                 userImageRef.style.backgroundImage = `url(https://avatars.githubusercontent.com/${githubAvatar}`
-            } else {
-                userImageRef.innerHTML = `<p>${nome[0]}</p>`
-                userImageRef.style.opacity = .4
+            // } else {
+            //     userImageRef.innerHTML = `<p>${nome[0]}</p>`
+            //     userImageRef.style.opacity = .4
             }
         }
     )
