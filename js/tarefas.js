@@ -33,14 +33,11 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', login).then(
             userNameRef.innerHTML = `${nome}`
             
             const githubAvatar = `${lastName})`
-            
+            userImageRef.innerHTML = `<p>${nome[0]}</p>`
             if(githubAvatar) {
                 userImageRef.innerHTML = ''
                 userImageRef.style.opacity = 1
                 userImageRef.style.backgroundImage = `url(https://avatars.githubusercontent.com/${githubAvatar}`
-            // } else {
-            //     userImageRef.innerHTML = `<p>${nome[0]}</p>`
-            //     userImageRef.style.opacity = .4
             }
         }
     )
@@ -67,7 +64,7 @@ const printTasks = () => {
                 const dataFormatada = new Date(task.createdAt).toLocaleDateString( 'pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' } )
                 if(task.completed === false) {
                     listUnfinishedTasksRef.innerHTML += `
-                        <li class="tarefa" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
+                        <li class="tarefa" data-aos="fade-up-right" data-aos-duration="900">
                             <div class="not-done" onclick="updateTask(${task.id})"></div>
                             <div class="descricao">
                                 <p class="nome">${task.description}</p>
@@ -77,7 +74,7 @@ const printTasks = () => {
                         </li>`
                 }else{
                         listFinishedTasksRef.innerHTML += `
-                        <li class="tarefa" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
+                        <li class="tarefa" data-aos="fade-up" data-aos-duration="900">
                             <div class="not-done" onclick="updateTaskToFalse(${task.id})"></div>
                             <div class="descricao">
                                 <p class="nome">${task.description}</p>
@@ -88,34 +85,33 @@ const printTasks = () => {
                 }
             }
         })
-
 }
 
 //Função de cricação de Tarefas
 
 const skeletonStructure = `<div id="skeleton">
-<li class="tarefa">
-    <div class="not-done"></div>
-    <div class="descricao">
-        <p class="nome">Nova tarefa</p>
-        <p class="timestamp">Criada em: 15/07/21</p>
-    </div>
-</li>
-<li class="tarefa">
-    <div class="not-done"></div>
-    <div class="descricao">
-        <p class="nome">Nova tarefa</p>
-        <p class="timestamp">Criada em: 15/07/21</p>
-    </div>
-</li>
-<li class="tarefa">
-    <div class="not-done"></div>
-    <div class="descricao">
-        <p class="nome">Nova tarefa</p>
-        <p class="timestamp">Criada em: 15/07/21</p>
-    </div>
-</li>
-</div>`
+    <li class="tarefa">
+        <div class="not-done"></div>
+        <div class="descricao">
+            <p class="nome">Nova tarefa</p>
+            <p class="timestamp">Criada em: 15/07/21</p>
+        </div>
+    </li>
+    <li class="tarefa">
+        <div class="not-done"></div>
+        <div class="descricao">
+            <p class="nome">Nova tarefa</p>
+            <p class="timestamp">Criada em: 15/07/21</p>
+        </div>
+    </li>
+    <li class="tarefa">
+        <div class="not-done"></div>
+        <div class="descricao">
+            <p class="nome">Nova tarefa</p>
+            <p class="timestamp">Criada em: 15/07/21</p>
+        </div>
+    </li>
+    </div>`
 
 function creatTask(){   
     let newTask = {

@@ -39,6 +39,7 @@ a {
   background-color: white;
   opacity: .4;
   margin-left: .7em;
+  background-size: cover;
 }
 .user-image {
   display: flex;
