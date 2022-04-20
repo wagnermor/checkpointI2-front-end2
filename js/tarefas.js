@@ -179,8 +179,8 @@ function deleteTask(id) {
         text: "Deseja confirmar a exclusão da tarefa?",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#07ebc1',
+        cancelButtonColor: '#ffb300',
         confirmButtonText: 'Sim!'
         }).then((result) => {
         if (result.isConfirmed) {
