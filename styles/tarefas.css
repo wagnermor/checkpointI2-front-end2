@@ -34,25 +34,12 @@ a {
   background-color: white;
   opacity: .4;
   margin-left: .7em;
-  background-size: cover;
-}
-
-.user-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-.user-image>p {
-  font-size: 1.4em;
-  word-break:break-all;
 }
 
 #closeApp{
   margin-left: 15px;
   font-size: .7em;
-  background-color: rgb(218, 88, 88);
+  background-color: var(--primary);
   color: white;
   border-radius: 50vh;
   padding: 5px 10px;

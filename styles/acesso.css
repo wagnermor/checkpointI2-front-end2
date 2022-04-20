@@ -129,3 +129,24 @@ button:disabled:hover {
   align-items: center;
   justify-content: center;
 }
+
+/* a:hover {
+  color: white;
+  box-shadow: inset 300px 0 0 0 rgb(7, 235, 193);
+
+
+} */
+
+a {
+  box-shadow: inset 0 0 0 0 var(--secondary);
+  color: var(--secondary);
+  padding: 0 .25rem;
+  margin: 0 -.25rem;
+  font-size: 17px;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+a:hover {
+  color: #fff;
+  box-shadow: inset 300px 0 0 0 var(--secondary);;
+}
+

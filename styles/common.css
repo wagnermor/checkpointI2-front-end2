@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
 
 :root {
-  --primary: #7898FF;
+  --primary: rgb(255, 179, 0);
   --primary-disabled: rgba(120, 152, 255, 0.616);
-  --secondary: #8E64C5;
+  --secondary: rgb(7, 235, 193);
   --app-grey: #F2F2F2;
   --input-ok: rgba(172, 255, 47, .3); 
   --input-not-ok: rgba(255, 0, 0, .3); 
