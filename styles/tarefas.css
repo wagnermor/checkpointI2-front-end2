@@ -1,4 +1,9 @@
 @import url('./common.css');
+
+body {
+  padding-bottom: 120px;
+}
+
 header {
   display: flex;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -52,7 +57,7 @@ a {
 #closeApp{
   margin-left: 15px;
   font-size: .7em;
-  background-color: rgb(218, 88, 88);
+  background-color: var(--primary);
   color: white;
   border-radius: 50vh;
   padding: 5px 10px;
