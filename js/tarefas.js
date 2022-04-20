@@ -34,11 +34,13 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', login).then(
             
             const githubAvatar = `${lastName})`
             
-            userImageRef.innerHTML = `<p>${nome[0]}</p>`
             if(githubAvatar) {
                 userImageRef.innerHTML = ''
-                userImageRef.style.backgroundImage = `url(https://avatars.githubusercontent.com/${githubAvatar}`
                 userImageRef.style.opacity = 1
+                userImageRef.style.backgroundImage = `url(https://avatars.githubusercontent.com/${githubAvatar}`
+            } else {
+                userImageRef.innerHTML = `<p>${nome[0]}</p>`
+                userImageRef.style.opacity = .4
             }
         }
     )
@@ -62,23 +64,24 @@ const printTasks = () => {
             }
             for(let task of tasks) {
                 console.log(`Task: ${task.description}\nFinalizada: ${task.completed}`)
+                const dataFormatada = new Date(task.createdAt).toLocaleDateString( 'pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' } )
                 if(task.completed === false) {
                     listUnfinishedTasksRef.innerHTML += `
-                        <li class="tarefa">
+                        <li class="tarefa" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
                             <div class="not-done" onclick="updateTask(${task.id})"></div>
                             <div class="descricao">
                                 <p class="nome">${task.description}</p>
-                                <p class="timestamp">Criada em: ${task.createdAt}</p>
+                                <p class="timestamp">Criada em: ${dataFormatada}</p>
                                 <button id="btn-delete" onclick="deleteTask(${task.id})"><div></div></button>
                             </div>
                         </li>`
                 }else{
                         listFinishedTasksRef.innerHTML += `
-                        <li class="tarefa">
+                        <li class="tarefa" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
                             <div class="not-done" onclick="updateTaskToFalse(${task.id})"></div>
                             <div class="descricao">
                                 <p class="nome">${task.description}</p>
-                                <p class="timestamp">Criada em:${task.createdAt}</p>
+                                <p class="timestamp">Criada em:${dataFormatada}</p>
                                 <button id="btn-delete" onclick="deleteTask(${task.id})"><div></div></button>
                             </div>
                         </li>`
@@ -127,8 +130,10 @@ function creatTask(){
     }
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", requestConfigurationPost)
         .then(response => {
-            if(response.ok) response.json()
-            
+            if(response.ok) {
+                response.json()
+                printTasks()
+            }
         })
     novaTarefaRef.value = ''
 }
@@ -188,7 +193,7 @@ addTaskRef.addEventListener('click',  (event) => {
     event.preventDefault()
     creatTask();
     console.log("Botao Funcionando!")
-    const printTasksTimeout = setTimeout(printTasks, 1000);
+    // const printTasksTimeout = setTimeout(printTasks, 1000);
 })
 
 

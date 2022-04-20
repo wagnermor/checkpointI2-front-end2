@@ -1,4 +1,9 @@
 @import url('./common.css');
+
+body {
+  padding-bottom: 120px;
+}
+
 header {
   display: flex;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
