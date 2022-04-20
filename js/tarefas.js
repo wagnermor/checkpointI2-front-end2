@@ -163,27 +163,59 @@ function updateTaskToFalse(id) {
             }
         })
 }
-//const time = () => setTimeout(printTasks, 1000);
+
+
+const time = () => setTimeout(printTasks, 1000);
+
+
 
 function deleteTask(id) {
     const taskStatedeleted = {
         method: 'DELETE',
         headers:login.headers
-        }
-    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, taskStatedeleted).then(
-        response => {
-            if(response.ok){
-                printTasks()
-            } else{
-                listUnfinishedTasksRef.innerHTML = ""
-                listFinishedTasksRef.innerHTML = ""
-                listUnfinishedTasksRef.innerHTML += skeletonStructure
-                listFinishedTasksRef.innerHTML += skeletonStructure
-                printTasks()
-            }
+    }
+    Swal.fire({
+        title: 'Deletar?',
+        text: "Deseja confirmar a exclusão da tarefa?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, taskStatedeleted).then(
+                response => {
+                    if(response.ok){
+                        Swal.fire(
+                            'Deletado!',
+                            'Sua tarefa foi deletada!',
+                            'success'
+                        )
+                        fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks`, login)
+                        .then((response) => {
+                            if(response.ok){
+                                return response.json()  
+                            }
+                        }).then(response => {
+                            if(response.length == 0) {
+                                printTasks()
+                                setTimeout(function() {
+                                    window.location.reload(1);
+                                  }, 1000)
+                        }})
+                        printTasks()
+                    } else{
+                        listUnfinishedTasksRef.innerHTML = ""
+                        listFinishedTasksRef.innerHTML = ""
+                        listUnfinishedTasksRef.innerHTML += skeletonStructure
+                        listFinishedTasksRef.innerHTML += skeletonStructure
+                    }
+                })
 
+            
         }
-    )
+    })
 }
 
 //Botao adicionar tarefas
