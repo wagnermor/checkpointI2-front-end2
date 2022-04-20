@@ -202,7 +202,7 @@ function deleteTask(id) {
                                 printTasks()
                                 setTimeout(function() {
                                     window.location.reload(1);
-                                  }, 1000)
+                                  }, 2000)
                         }})
                         printTasks()
                     } else{
