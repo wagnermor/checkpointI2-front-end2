@@ -1,5 +1,5 @@
 const selectElement = selector => document.querySelector(selector)
-const userImage = document.querySelector('#userImage')
+//const userImage = document.querySelector('#userImage')
 const userNameRef = selectElement('#userName')
 const userImageRef = selectElement('#userImage')
 const closeAppRef = selectElement('#closeApp')
@@ -22,7 +22,7 @@ if(localStorage.getItem('token') === null){
     window.location.href = './index.html'
 }
 
-userImage.classList.add('user-image')
+userImageRef.classList.add('user-image')
 
 //Mostrar nome do Usuario
 fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', login).then(
@@ -167,7 +167,7 @@ function updateTaskToFalse(id) {
             }
         })
 }
-const time = () => setTimeout(printTasks, 1000);
+//const time = () => setTimeout(printTasks, 1000);
 
 function deleteTask(id) {
     const taskStatedeleted = {
@@ -183,7 +183,9 @@ function deleteTask(id) {
                 listFinishedTasksRef.innerHTML = ""
                 listUnfinishedTasksRef.innerHTML += skeletonStructure
                 listFinishedTasksRef.innerHTML += skeletonStructure
+                printTasks()
             }
+
         }
     )
 }
